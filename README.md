@@ -2,9 +2,23 @@
 
 Nunu is a scaffolding tool for building Go applications. Its name comes from a game character in League of Legends, a little boy riding on the shoulders of a Yeti. Just like Nunu, this project stands on the shoulders of giants, as it is built upon a combination of popular libraries from the Go ecosystem. This combination allows you to quickly build efficient and reliable applications.
 
-[简体中文介绍](https://github.com/go-nunu/nunu/blob/main/README_zh.md)
-
-![Nunu](https://github.com/go-nunu/nunu/blob/main/.github/assets/banner.png)
+- [ ] add `go install github.com/air-verse/air@latest`
+- [ ] add slqc
+- [ ] add socical login
+- [ ] add queue, message queues (Kafka)
+- [ ] add sent mail
+- [ ] add file uploads
+- [ ] add websocket
+- [ ] add notifications systems
+- [ ] add pagination, filter
+- [ ] add graphql
+- [ ] add grpc
+- [ ] add hyerachy
+- [ ] add global exeptions
+- [ ] add validate decorators
+- [ ] add workers
+- [ ] add emit, listen events
+- [ ] add infracstructors (...)
 
 ## Documentation
 * [User Guide](https://github.com/go-nunu/nunu/blob/main/docs/en/guide.md)
