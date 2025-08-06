@@ -1,25 +1,50 @@
-version: '3'
+version: '3.8'
 
 services:
   user-db:
-    image: mysql:8.0.31-debian
+    image: postgres:15-alpine
     hostname: user-db
     container_name: user-db
     ports:
-      - 3380:3306
+      - 5432:5432
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_DATABASE=user
-    # volumes:
-    #   - ./data/mysql/user:/var/lib/mysql
-    #   - ./conf/mysql/conf.d:/etc/mysql/conf.d
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=user
+      - POSTGRES_INITDB_ARGS=--encoding=UTF8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
   cache-redis:
-    image: redis:6-alpine
+    image: redis:7-alpine
     hostname: cache-redis
-    # volumes:
-    #   - ./data/redis/cache/:/data
-    #   - ./conf/redis/cache/redis.conf:/etc/redis/redis.conf
+    container_name: cache-redis
     ports:
       - 6350:6379
-    command: ["redis-server","/etc/redis/redis.conf"]
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+    command: ["redis-server", "--appendonly", "yes"]
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: go-boilerplate-network

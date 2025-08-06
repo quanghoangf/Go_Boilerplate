@@ -33,9 +33,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "用户模块"
+                    "User"
                 ],
-                "summary": "账号登录",
+                "summary": "Account Login",
                 "parameters": [
                     {
                         "description": "params",
@@ -59,7 +59,7 @@ const docTemplate = `{
         },
         "/register": {
             "post": {
-                "description": "目前只支持邮箱登录",
+                "description": "Currently only supports email registration",
                 "consumes": [
                     "application/json"
                 ],
@@ -67,9 +67,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "用户模块"
+                    "User"
                 ],
-                "summary": "用户注册",
+                "summary": "User Registration",
                 "parameters": [
                     {
                         "description": "params",
@@ -105,9 +105,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "用户模块"
+                    "User"
                 ],
-                "summary": "获取用户信息",
+                "summary": "Get User Profile",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -130,9 +130,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "用户模块"
+                    "User"
                 ],
-                "summary": "修改用户信息",
+                "summary": "Update User Profile",
                 "parameters": [
                     {
                         "description": "params",

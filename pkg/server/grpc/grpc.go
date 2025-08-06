@@ -11,21 +11,33 @@ import (
 
 type Server struct {
 	*grpc.Server
-	host   string
-	port   int
-	logger *log.Logger
+	host               string
+	port               int
+	logger             *log.Logger
+	unaryInterceptors  []grpc.UnaryServerInterceptor
+	streamInterceptors []grpc.StreamServerInterceptor
 }
 
 type Option func(s *Server)
 
 func NewServer(logger *log.Logger, opts ...Option) *Server {
 	s := &Server{
-		Server: grpc.NewServer(),
 		logger: logger,
 	}
 	for _, opt := range opts {
 		opt(s)
 	}
+	
+	// Create server options with interceptors
+	var serverOpts []grpc.ServerOption
+	if len(s.unaryInterceptors) > 0 {
+		serverOpts = append(serverOpts, grpc.ChainUnaryInterceptor(s.unaryInterceptors...))
+	}
+	if len(s.streamInterceptors) > 0 {
+		serverOpts = append(serverOpts, grpc.ChainStreamInterceptor(s.streamInterceptors...))
+	}
+	
+	s.Server = grpc.NewServer(serverOpts...)
 	return s
 }
 func WithServerHost(host string) Option {
@@ -36,6 +48,18 @@ func WithServerHost(host string) Option {
 func WithServerPort(port int) Option {
 	return func(s *Server) {
 		s.port = port
+	}
+}
+
+func WithUnaryInterceptors(interceptors ...grpc.UnaryServerInterceptor) Option {
+	return func(s *Server) {
+		s.unaryInterceptors = append(s.unaryInterceptors, interceptors...)
+	}
+}
+
+func WithStreamInterceptors(interceptors ...grpc.StreamServerInterceptor) Option {
+	return func(s *Server) {
+		s.streamInterceptors = append(s.streamInterceptors, interceptors...)
 	}
 }
 

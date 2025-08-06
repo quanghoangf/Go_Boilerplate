@@ -2,8 +2,9 @@
 
 A production-ready Go web API boilerplate built with clean architecture principles. This boilerplate provides a solid foundation for building scalable web APIs with JWT authentication, database integration, comprehensive testing, and excellent developer experience.
 
-- [ ] add `go install github.com/air-verse/air@latest`
+- [x] add `go install github.com/air-verse/air@latest`
 - [x] add slqc
+- [x] add grpc
 - [ ] add socical login
 - [ ] add queue, message queues (Kafka)
 - [ ] add sent mail
@@ -12,7 +13,6 @@ A production-ready Go web API boilerplate built with clean architecture principl
 - [ ] add notifications systems
 - [ ] add pagination, filter
 - [ ] add graphql
-- [ ] add grpc
 - [ ] add hyerachy
 - [ ] add global exeptions
 - [ ] add validate decorators
@@ -33,6 +33,9 @@ A production-ready Go web API boilerplate built with clean architecture principl
 - **Configuration**: Environment-based configuration with Viper
 - **Middleware**: CORS, logging, and authentication middleware
 - **Docker Support**: Containerization and docker-compose setup
+- **Live Reload Development**: Air integration for automatic server restart during development
+- **gRPC Support**: High-performance gRPC server with Protocol Buffers, interceptors, and comprehensive error handling
+- **Dual Protocol**: Run both HTTP REST and gRPC services simultaneously
 
 ## Getting Started
 
@@ -46,15 +49,46 @@ A production-ready Go web API boilerplate built with clean architecture principl
    make bootstrap
    ```
 
-3. **Run tests**:
+3. **Start development server with live reload**:
+   ```bash
+   make dev
+   ```
+
+4. **Run tests**:
    ```bash
    make test
    ```
 
-4. **Generate API documentation**:
+5. **Generate Protocol Buffers**:
+   ```bash
+   make proto-gen
+   ```
+
+6. **Generate API documentation**:
    ```bash
    make swag
    ```
+
+## API Endpoints
+
+The application provides both REST and gRPC endpoints:
+
+### REST API (Port 8000)
+- `POST /v1/register` - User registration
+- `POST /v1/login` - User login
+- `GET /v1/user` - Get user profile (requires auth)
+- `PUT /v1/user` - Update user profile (requires auth)
+- `GET /swagger/index.html` - Swagger documentation
+
+### gRPC API (Port 8080)
+- `UserService.Register` - User registration
+- `UserService.Login` - User login  
+- `UserService.GetProfile` - Get user profile (requires auth)
+- `UserService.UpdateProfile` - Update user profile (requires auth)
+
+### Authentication
+- REST: Use `Authorization: Bearer <token>` header
+- gRPC: Use `authorization: Bearer <token>` metadata
 
 ## License
 
