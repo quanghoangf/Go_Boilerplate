@@ -8,7 +8,7 @@ init:
 bootstrap:
 	cd ./deploy/docker-compose && docker compose up -d && cd ../../
 	go run ./cmd/migration
-	nunu run ./cmd/server
+	go run ./cmd/server
 
 .PHONY: mock
 mock:

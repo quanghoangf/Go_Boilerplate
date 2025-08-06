@@ -1,6 +1,6 @@
-# Nunu — A CLI tool for building Go applications.
+# Go Web API Boilerplate
 
-Nunu is a scaffolding tool for building Go applications. Its name comes from a game character in League of Legends, a little boy riding on the shoulders of a Yeti. Just like Nunu, this project stands on the shoulders of giants, as it is built upon a combination of popular libraries from the Go ecosystem. This combination allows you to quickly build efficient and reliable applications.
+A production-ready Go web API boilerplate built with clean architecture principles. This boilerplate provides a solid foundation for building scalable web APIs with JWT authentication, database integration, comprehensive testing, and excellent developer experience.
 
 - [ ] add `go install github.com/air-verse/air@latest`
 - [x] add slqc
@@ -20,13 +20,42 @@ Nunu is a scaffolding tool for building Go applications. Its name comes from a g
 - [ ] add emit, listen events
 - [ ] add infracstructors (...)
 
-## Documentation
+## Features
 
-- [User Guide](https://github.com/go-nunu/nunu/blob/main/docs/en/guide.md)
-- [Architecture](https://github.com/go-nunu/nunu/blob/main/docs/en/architecture.md)
-- [Getting Started Tutorial](https://github.com/go-nunu/nunu/blob/main/docs/en/tutorial.md)
-- [Unit Testing](https://github.com/go-nunu/nunu/blob/main/docs/en/unit_testing.md)
+- **Clean Architecture**: Well-structured codebase following clean architecture principles
+- **JWT Authentication**: Secure authentication with JWT tokens
+- **Database Integration**: Support for PostgreSQL, MySQL, and SQLite with GORM
+- **Type-safe Queries**: SQLC for generating type-safe Go code from SQL
+- **Dependency Injection**: Google Wire for compile-time dependency injection
+- **API Documentation**: Auto-generated Swagger/OpenAPI documentation
+- **Comprehensive Testing**: Unit tests with mocks and coverage reports
+- **Logging**: Structured logging with Zap
+- **Configuration**: Environment-based configuration with Viper
+- **Middleware**: CORS, logging, and authentication middleware
+- **Docker Support**: Containerization and docker-compose setup
+
+## Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   make init
+   ```
+
+2. **Start development environment**:
+   ```bash
+   make bootstrap
+   ```
+
+3. **Run tests**:
+   ```bash
+   make test
+   ```
+
+4. **Generate API documentation**:
+   ```bash
+   make swag
+   ```
 
 ## License
 
-Nunu is released under the MIT License. For more information, see the [LICENSE](LICENSE) file.
+This project is released under the MIT License. For more information, see the [LICENSE](LICENSE) file.

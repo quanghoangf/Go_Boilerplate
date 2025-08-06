@@ -11,9 +11,9 @@ import (
 	"go.uber.org/zap"
 )
 
-// @title           Nunu Example API
+// @title           Go Web API Boilerplate
 // @version         1.0.0
-// @description     This is a sample server celler server.
+// @description     A clean architecture Go web API boilerplate with JWT authentication, database integration, and comprehensive testing.
 // @termsOfService  http://swagger.io/terms/
 // @contact.name   API Support
 // @contact.url    http://www.swagger.io/support
