@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package user.v1;
+
+option go_package = "boilerplate/api/grpc/user/v1;userv1";
+
+// UserService provides user authentication and profile management
+service UserService {
+  // Register creates a new user account
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  // Login authenticates a user and returns an access token
+  rpc Login(LoginRequest) returns (LoginResponse);
+
+  // GetProfile retrieves the user's profile information
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+
+  // UpdateProfile updates the user's profile information
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+}
+
+// RegisterRequest contains user registration data
+message RegisterRequest {
+  // User's email address (required)
+  string email = 1;
+  
+  // User's password (required, minimum 6 characters)
+  string password = 2;
+}
+
+// RegisterResponse confirms successful user registration
+message RegisterResponse {
+  // Success message
+  string message = 1;
+}
+
+// LoginRequest contains user login credentials
+message LoginRequest {
+  // User's email address (required)
+  string email = 1;
+  
+  // User's password (required)
+  string password = 2;
+}
+
+// LoginResponse contains authentication token
+message LoginResponse {
+  // JWT access token for API authentication
+  string access_token = 1;
+  
+  // Token expiration time in seconds
+  int64 expires_in = 2;
+}
+
+// GetProfileRequest is empty as user ID comes from JWT token
+message GetProfileRequest {}
+
+// GetProfileResponse contains user profile information
+message GetProfileResponse {
+  // Unique user identifier
+  string user_id = 1;
+  
+  // User's display name
+  string nickname = 2;
+  
+  // User's email address
+  string email = 3;
+}
+
+// UpdateProfileRequest contains updated user profile data
+message UpdateProfileRequest {
+  // User's display name
+  string nickname = 1;
+  
+  // User's email address (required)
+  string email = 2;
+}
+
+// UpdateProfileResponse confirms successful profile update
+message UpdateProfileResponse {
+  // Success message
+  string message = 1;
+  
+  // Updated user profile
+  GetProfileResponse profile = 2;
+}

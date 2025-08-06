@@ -15,7 +15,7 @@ func IntToBase62(n int) string {
 		n /= 62
 	}
 
-	// 反转字符串
+	// Reverse the string
 	for i, j := 0, len(result)-1; i < j; i, j = i+1, j-1 {
 		result[i], result[j] = result[j], result[i]
 	}

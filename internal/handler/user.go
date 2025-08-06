@@ -21,10 +21,10 @@ func NewUserHandler(handler *Handler, userService service.UserService) *UserHand
 }
 
 // Register godoc
-// @Summary 用户注册
+// @Summary User Registration
 // @Schemes
-// @Description 目前只支持邮箱登录
-// @Tags 用户模块
+// @Description Currently only supports email registration
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param request body v1.RegisterRequest true "params"
@@ -47,10 +47,10 @@ func (h *UserHandler) Register(ctx *gin.Context) {
 }
 
 // Login godoc
-// @Summary 账号登录
+// @Summary Account Login
 // @Schemes
 // @Description
-// @Tags 用户模块
+// @Tags User
 // @Accept json
 // @Produce json
 // @Param request body v1.LoginRequest true "params"
@@ -74,10 +74,10 @@ func (h *UserHandler) Login(ctx *gin.Context) {
 }
 
 // GetProfile godoc
-// @Summary 获取用户信息
+// @Summary Get User Profile
 // @Schemes
 // @Description
-// @Tags 用户模块
+// @Tags User
 // @Accept json
 // @Produce json
 // @Security Bearer
@@ -100,10 +100,10 @@ func (h *UserHandler) GetProfile(ctx *gin.Context) {
 }
 
 // UpdateProfile godoc
-// @Summary 修改用户信息
+// @Summary Update User Profile
 // @Schemes
 // @Description
-// @Tags 用户模块
+// @Tags User
 // @Accept json
 // @Produce json
 // @Security Bearer

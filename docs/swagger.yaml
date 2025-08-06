@@ -106,14 +106,14 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/boilerplate_api_v1.LoginResponse'
-      summary: 账号登录
+      summary: Account Login
       tags:
-      - 用户模块
+      - User
   /register:
     post:
       consumes:
       - application/json
-      description: 目前只支持邮箱登录
+      description: Currently only supports email registration
       parameters:
       - description: params
         in: body
@@ -128,9 +128,9 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/boilerplate_api_v1.Response'
-      summary: 用户注册
+      summary: User Registration
       tags:
-      - 用户模块
+      - User
   /user:
     get:
       consumes:
@@ -144,9 +144,9 @@ paths:
             $ref: '#/definitions/boilerplate_api_v1.GetProfileResponse'
       security:
       - Bearer: []
-      summary: 获取用户信息
+      summary: Get User Profile
       tags:
-      - 用户模块
+      - User
     put:
       consumes:
       - application/json
@@ -166,9 +166,9 @@ paths:
             $ref: '#/definitions/boilerplate_api_v1.Response'
       security:
       - Bearer: []
-      summary: 修改用户信息
+      summary: Update User Profile
       tags:
-      - 用户模块
+      - User
 securityDefinitions:
   Bearer:
     in: header

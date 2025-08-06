@@ -3,6 +3,9 @@ http:
   #  host: 0.0.0.0
   host: 127.0.0.1
   port: 8000
+grpc:
+  host: 127.0.0.1
+  port: 8081
 security:
   api_sign:
     app_key: 123456
@@ -12,14 +15,14 @@ security:
 data:
   db:
     user:
-      driver: sqlite
-      dsn: storage/app.db?_busy_timeout=5000
+      driver: postgres
+      dsn: host=localhost user=postgres password=123456 dbname=user port=5432 sslmode=disable TimeZone=UTC
+  #    user:
+  #      driver: sqlite
+  #      dsn: storage/app.db?_busy_timeout=5000
   #    user:
   #      driver: mysql
   #      dsn: root:123456@tcp(127.0.0.1:3380)/user?charset=utf8mb4&parseTime=True&loc=Local
-  #    user:
-  #      driver: postgres
-  #      dsn: host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai
   redis:
     addr: 127.0.0.1:6350
     password: ""

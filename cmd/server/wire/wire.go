@@ -12,6 +12,7 @@ import (
 	"boilerplate/pkg/jwt"
 	"boilerplate/pkg/log"
 	"boilerplate/pkg/server/http"
+	"boilerplate/pkg/server/grpc"
 	"boilerplate/pkg/sid"
 	"github.com/google/wire"
 	"github.com/spf13/viper"
@@ -37,17 +38,19 @@ var handlerSet = wire.NewSet(
 
 var serverSet = wire.NewSet(
 	server.NewHTTPServer,
+	server.NewGRPCServer,
 	server.NewJob,
 )
 
 // build App
 func newApp(
 	httpServer *http.Server,
+	grpcServer *grpc.Server,
 	job *server.Job,
 	// task *server.Task,
 ) *app.App {
 	return app.NewApp(
-		app.WithServer(httpServer, job),
+		app.WithServer(httpServer, grpcServer, job),
 		app.WithName("demo-server"),
 	)
 }
